@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="movies.length" class="row">
+    <div v-if="movies.length" class="row no-horizontal-margin">
       <div v-for="movie in movies" :key="movie.id" class="col-md-4">
         <div
           class="card mb-3"
@@ -12,7 +12,8 @@
               <img
                 :src="getImageUrl(movie.poster_path)"
                 alt="Descrição da Imagem"
-                style="padding: 7px"
+                style="padding: 7px; max-height: 100%;"
+                class="img-fluid"
               />
             </div>
             <div class="col-md-8">
@@ -79,5 +80,9 @@ export default {
 .card {
   cursor: pointer;
   margin: 15px 15px 15px 40px;
+}
+
+.no-horizontal-margin {
+  margin-right: 0;
 }
 </style>
