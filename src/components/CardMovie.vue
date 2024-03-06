@@ -67,9 +67,9 @@ export default {
       return `https://image.tmdb.org/t/p/w200${relativePath}`;
     },
     async loadMoreMovies() {
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const windowHeight = window.innerHeight; // Altura da janela do navegador
+      const documentHeight = document.documentElement.scrollHeight; // Altura total do documento
+      const scrollTop = window.scrollY || document.documentElement.scrollTop; // Posição atual do scroll
 
       if (windowHeight + scrollTop >= documentHeight - 100) {
         this.$store.dispatch("getMovies", this.$store.state.currentPage + 1);
@@ -85,6 +85,10 @@ export default {
       this.$store.dispatch("getMovies", this.$store.state.currentPage);
     }
     window.addEventListener("scroll", this.loadMoreMovies);
+  },
+
+  beforeUnmount() {
+    window.removeEventListener("scroll", this.loadMoreMovies);
   },
 };
 </script>
