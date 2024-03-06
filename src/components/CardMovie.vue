@@ -5,10 +5,15 @@
         <div
           class="card mb-3"
           style="max-width: 540px"
-          @click="console.log('cliquei')"
+          @click="console.log(movie.title)"
         >
           <div class="row g-0">
-            <div class="col-md-4"></div>
+            <div class="col-md-4">
+              <img
+                src="../assets/0156803.jpg"
+                class="img-fluid rounded-start"
+              />
+            </div>
             <div class="col-md-8">
               <div class="card-body">
                 <h5 class="card-title">{{ movie.title }}</h5>
@@ -35,7 +40,7 @@ export default {
   name: "CARD_MOVIE",
   data() {
     return {
-      limit: 150,
+      limit: 300,
     };
   },
   methods: {
@@ -60,5 +65,6 @@ export default {
 <style>
 .card {
   cursor: pointer;
+  margin: 15px 15px 15px 40px;
 }
 </style>
