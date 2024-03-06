@@ -3,8 +3,9 @@
     <div class="row g-0 d-flex justify-content-center align-items-center">
       <div class="col-md-8">
         <img
-          src="../assets/0156803.jpg"
-          class="img-fluid rounded-start"
+          :src="getImageUrl(movieInfos.poster_path)"
+          alt="Descrição da Imagem"
+          style="padding: 7px"
           id="imgMovie"
         />
         <div class="card-body">
@@ -31,6 +32,11 @@ export default {
   name: "CARDMOVIEINFOS",
   computed: {
     ...mapState(["movieInfos"]),
+  },
+  methods: {
+    getImageUrl(relativePath) {
+      return `https://image.tmdb.org/t/p/w200${relativePath}`;
+    },
   },
 };
 </script>

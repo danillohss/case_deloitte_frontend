@@ -10,14 +10,18 @@
           <div class="row g-0">
             <div class="col-md-4">
               <img
-                src="../assets/0156803.jpg"
-                class="img-fluid rounded-start"
+                :src="getImageUrl(movie.poster_path)"
+                alt="Descrição da Imagem"
                 style="padding: 7px"
               />
             </div>
             <div class="col-md-8">
               <div class="card-body">
-                <h5 class="card-title">{{ movie.title }}</h5>
+                <h5 class="card-title">
+                  <strong>
+                    {{ movie.title }}
+                  </strong>
+                </h5>
                 <p class="card-text">
                   {{ caracterLimit(movie.overview, limit) }}
                 </p>
@@ -54,6 +58,9 @@ export default {
     movieInfo(movie) {
       this.$store.commit("getMoviesInfos", movie);
       this.$router.push("/Infos");
+    },
+    getImageUrl(relativePath) {
+      return `https://image.tmdb.org/t/p/w200${relativePath}`;
     },
   },
   computed: {
