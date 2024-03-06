@@ -12,7 +12,7 @@
               <img
                 :src="getImageUrl(movie.poster_path)"
                 alt="Descrição da Imagem"
-                style="padding: 7px; max-height: 100%;"
+                style="padding: 7px; max-height: 100%"
                 class="img-fluid"
               />
             </div>
@@ -33,9 +33,12 @@
       </div>
     </div>
 
-    <div v-else>
-      <p>Loading Movies...</p>
-    </div>
+    <div
+      v-else
+      class="spinner-border"
+      style="width: 3rem; height: 3rem"
+      role="status"
+    ></div>
   </div>
 </template>
 
@@ -63,6 +66,15 @@ export default {
     getImageUrl(relativePath) {
       return `https://image.tmdb.org/t/p/w200${relativePath}`;
     },
+    async loadMoreMovies() {
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+      if (windowHeight + scrollTop >= documentHeight - 100) {
+        this.$store.dispatch("getMovies", this.$store.state.currentPage + 1);
+      }
+    },
   },
   computed: {
     ...mapState(["movies"]),
@@ -70,8 +82,9 @@ export default {
   },
   mounted() {
     if (!this.movies.length) {
-      this.$store.dispatch("getMovies");
+      this.$store.dispatch("getMovies", this.$store.state.currentPage);
     }
+    window.addEventListener("scroll", this.loadMoreMovies);
   },
 };
 </script>

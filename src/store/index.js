@@ -6,22 +6,25 @@ const { options, apiAxios } = axiosConfig;
 export default createStore({
   state: {
     movies: [],
+    currentPage: 1,
     movieInfos: [],
   },
   mutations: {
-    getMovies(state, payload) {
-      state.movies = payload.results;
+    getMovies(state, data) {
+      state.movies = [...state.movies, ...data.results];
     },
     getMoviesInfos(state, payload) {
       state.movieInfos = payload;
     }
   },
   actions: {
-    async getMovies(state) {
-      const response = await apiAxios.get("/3/discover/movie", options);
-      response.data.vote_average = parseFloat(response.data.vote_average).toFixed(1);
-      console.log(response.data)
-      state.commit('getMovies', response.data);
+    async getMovies({ commit }, page) {
+      const response = await apiAxios.get(`/3/discover/movie?page=${page}`, options);
+      response.data.results = response.data.results.slice(0, 18);
+      response.data.results.forEach(movie => {
+        movie.vote_average = parseFloat(movie.vote_average).toFixed(1);
+      });
+      commit('getMovies', response.data);
     }
   },
 })
