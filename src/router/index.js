@@ -8,8 +8,13 @@ const routes = [
   },
   {
     path: '/Infos',
-    name: 'Infos',
+    name: 'infos',
     component: () => import(/* webpackChunkName: "infos" */ '../pages/InfoMovie.vue')
+  },
+  {
+    path: '/Favorites',
+    name: 'favorites',
+    component: () => import(/* webpackChunkName: "favorites" */ '../pages/Favorites.vue')
   }
 ]
 

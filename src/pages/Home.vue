@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h1>Página inicial</h1>
-    <Card_movie/>
+    <Card_movie />
   </div>
 </template>
 

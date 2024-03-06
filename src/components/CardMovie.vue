@@ -5,13 +5,14 @@
         <div
           class="card mb-3"
           style="max-width: 540px"
-          @click="console.log(movie.title)"
+          @click="movieInfo(movie)"
         >
           <div class="row g-0">
             <div class="col-md-4">
               <img
                 src="../assets/0156803.jpg"
                 class="img-fluid rounded-start"
+                style="padding: 7px"
               />
             </div>
             <div class="col-md-8">
@@ -50,9 +51,14 @@ export default {
         ? overview.slice(0, limit) + "..."
         : overview;
     },
+    movieInfo(movie) {
+      this.$store.commit("getMoviesInfos", movie);
+      this.$router.push("/Infos");
+    },
   },
   computed: {
     ...mapState(["movies"]),
+    ...mapState(["movieInfos"]),
   },
   mounted() {
     if (!this.movies.length) {
@@ -62,7 +68,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .card {
   cursor: pointer;
   margin: 15px 15px 15px 40px;
