@@ -9,7 +9,7 @@
           id="imgMovie"
         />
         <div class="card-body">
-          <h5 class="card-title">
+          <h5 class="card-title" style="color: white">
             <strong>
               {{ movieInfos.title }}
             </strong>
@@ -20,7 +20,9 @@
             <strong> {{ movieInfos.vote_average }} / 10 </strong>
           </p>
           <div>
-            <strong style="padding-right: 10px">Add to favorites</strong>
+            <strong style="padding-right: 10px" class="card-text"
+              >Add to favorites</strong
+            >
             <input
               class="form-check-input"
               type="checkbox"
@@ -67,6 +69,9 @@ export default {
   transform: scale(1.5);
 }
 #card {
-  background-color: #46E0D1;
+  background-color: #606060;
+}
+.card-text {
+  color: white;
 }
 </style>

@@ -19,8 +19,8 @@
             </div>
             <div class="col-md-8">
               <div class="card-body">
-                <h5 class="card-title">
-                  <strong>
+                <h5 class="card-title" style="color: white">
+                  <strong class="card-text">
                     {{ movie.title }}
                   </strong>
                 </h5>
@@ -68,12 +68,28 @@ export default {
       return `https://image.tmdb.org/t/p/w200${relativePath}`;
     },
     async loadMoreMovies() {
-      const windowHeight = window.innerHeight; // Altura da janela do navegador
-      const documentHeight = document.documentElement.scrollHeight; // Altura total do documento
-      const scrollTop = window.scrollY || document.documentElement.scrollTop; // Posição atual do scroll
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
 
-      if (windowHeight + scrollTop >= documentHeight - 100) {
-        this.$store.dispatch("getMovies", this.$store.state.currentPage++);
+      // Verifica se o usuário está próximo do final da página e não está carregando mais filmes
+      if (
+        windowHeight + scrollTop >= documentHeight - 100 &&
+        !this.loadingMoreMovies
+      ) {
+        this.loadingMoreMovies = true; // Indica que estamos carregando mais filmes
+
+        try {
+          // Load more movies when the user is near the bottom
+          await this.$store.dispatch(
+            "getMovies",
+            this.$store.state.currentPage++
+          );
+        } catch (error) {
+          console.error("Error to loading more movies", error);
+        } finally {
+          this.loadingMoreMovies = false; // Reseta o indicador de carregamento
+        }
       }
     },
   },
@@ -104,6 +120,9 @@ export default {
   margin-right: 0;
 }
 #card {
-  background-color: #46e0d1;
+  background-color: #606060;
+}
+.card-text {
+  color: white;
 }
 </style>

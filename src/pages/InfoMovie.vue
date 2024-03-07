@@ -16,7 +16,7 @@ export default {
 
 <style>
 .filmInfo {
-  color: #46E0D1;
+  color: white;
   padding: 20px 0px 20px 0px;
 }
 </style>
