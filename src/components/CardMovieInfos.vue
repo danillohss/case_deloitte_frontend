@@ -65,8 +65,8 @@ export default {
 }
 
 #imgMovie:hover {
-  -webkit-transform: scale(1.5);
-  transform: scale(1.5);
+  -webkit-transform: scale(1.15);
+  transform: scale(1.15);
 }
 #card {
   background-color: #606060;
