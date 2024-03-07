@@ -81,9 +81,10 @@ export default {
 
         try {
           // Load more movies when the user is near the bottom
+          this.$store.state.currentPage++;
           await this.$store.dispatch(
             "getMovies",
-            this.$store.state.currentPage++
+            this.$store.state.currentPage
           );
         } catch (error) {
           console.error("Error to loading more movies", error);
