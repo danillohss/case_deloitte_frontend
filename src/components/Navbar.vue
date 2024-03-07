@@ -1,8 +1,11 @@
 <template>
   <div>
-    <nav class="navbar fixed-top navbar-expand-lg bg-body-tertiary" id="nav">
+    <nav
+      class="navbar navbar-dark bg-dark fixed-top navbar-expand-lg"
+      style="background-color: #2e948a"
+    >
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <i class="bi bi-camera-reels fs-2" style="padding-right: 10px"></i>
         <button
           class="navbar-toggler"
           type="button"
@@ -54,6 +57,6 @@ export default {
 
 <style>
 li:hover {
-  background-color: lightgray;
+  background-color: #5A8C87;
 }
 </style>

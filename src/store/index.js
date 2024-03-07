@@ -20,7 +20,7 @@ export default createStore({
   actions: {
     async getMovies({ commit }, page) {
       const response = await apiAxios.get(`/3/discover/movie?page=${page}`, options);
-      response.data.results = response.data.results.slice(0, 18);
+      response.data.results = response.data.results.slice(0, 12);
       response.data.results.forEach(movie => {
         movie.vote_average = parseFloat(movie.vote_average).toFixed(1);
       });

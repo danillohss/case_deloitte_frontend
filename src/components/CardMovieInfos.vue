@@ -1,5 +1,5 @@
 <template>
-  <div class="card mb-3" style="max-width: 540px; margin: auto">
+  <div id="card" class="card mb-3" style="max-width: 540px; margin: auto">
     <div class="row g-0 d-flex justify-content-center align-items-center">
       <div class="col-md-8">
         <img
@@ -16,9 +16,19 @@
           </h5>
           <p class="card-text">{{ movieInfos.overview }}</p>
           <p class="card-text">
-            Nota:
+            Score:
             <strong> {{ movieInfos.vote_average }} / 10 </strong>
           </p>
+          <div>
+            <strong style="padding-right: 10px">Add to favorites</strong>
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="checkboxNoLabel"
+              aria-label="..."
+              v-model="radio"
+            />
+          </div>
         </div>
       </div>
     </div>
@@ -30,6 +40,11 @@ import { mapState } from "vuex";
 
 export default {
   name: "CARDMOVIEINFOS",
+  data() {
+    return {
+      radio: false,
+    };
+  },
   computed: {
     ...mapState(["movieInfos"]),
   },
@@ -50,5 +65,8 @@ export default {
 #imgMovie:hover {
   -webkit-transform: scale(1.5);
   transform: scale(1.5);
+}
+#card {
+  background-color: #46E0D1;
 }
 </style>

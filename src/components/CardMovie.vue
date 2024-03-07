@@ -5,6 +5,7 @@
         <div
           class="card mb-3"
           style="max-width: 540px"
+          id="card"
           @click="movieInfo(movie)"
         >
           <div class="row g-0">
@@ -72,7 +73,7 @@ export default {
       const scrollTop = window.scrollY || document.documentElement.scrollTop; // Posição atual do scroll
 
       if (windowHeight + scrollTop >= documentHeight - 100) {
-        this.$store.dispatch("getMovies", this.$store.state.currentPage + 1);
+        this.$store.dispatch("getMovies", this.$store.state.currentPage++);
       }
     },
   },
@@ -101,5 +102,8 @@ export default {
 
 .no-horizontal-margin {
   margin-right: 0;
+}
+#card {
+  background-color: #46e0d1;
 }
 </style>

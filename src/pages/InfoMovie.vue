@@ -1,5 +1,5 @@
 <template>
-  <h1>Informações sobre o filme</h1>
+  <h1 class="filmInfo">Information about the movie</h1>
   <card-movie-infos-vue />
 </template>
 
@@ -15,4 +15,8 @@ export default {
 </script>
 
 <style>
+.filmInfo {
+  color: #46E0D1;
+  padding: 20px 0px 20px 0px;
+}
 </style>
