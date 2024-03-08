@@ -5,7 +5,12 @@
 
     <div v-if="movies.length" class="row no-horizontal-margin">
       <div v-for="movie in favorites" :key="movie.id" class="col-md-4">
-        <div class="card mb-3" style="max-width: 540px" id="card">
+        <div
+          class="card mb-3"
+          style="max-width: 540px"
+          id="card"
+          @click="movieInfo(movie)"
+        >
           <div class="row g-0">
             <div class="col-md-4">
               <img
@@ -56,6 +61,10 @@ export default {
       return overview.length > limit
         ? overview.slice(0, limit) + "..."
         : overview;
+    },
+    movieInfo(movie) {
+      this.$store.commit("getMoviesInfos", movie);
+      this.$router.push("/Infos");
     },
   },
 };
