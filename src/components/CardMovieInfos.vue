@@ -28,7 +28,9 @@
               type="checkbox"
               id="checkboxNoLabel"
               aria-label="..."
-              v-model="radio"
+              v-model="movieInfos.isFavorite"
+              :checked="isMovieInFavorites(movieInfos.id)"
+              @click="favoriteObserver(movieInfos)"
             />
           </div>
         </div>
@@ -38,21 +40,31 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapMutations } from "vuex";
 
 export default {
   name: "CARDMOVIEINFOS",
-  data() {
-    return {
-      radio: false,
-    };
-  },
   computed: {
-    ...mapState(["movieInfos"]),
+    ...mapState(["movieInfos", "favorites"]),
   },
   methods: {
+    ...mapMutations(["addToFavorites", "removeFromFavorites"]),
+
     getImageUrl(relativePath) {
       return `https://image.tmdb.org/t/p/w200${relativePath}`;
+    },
+    favoriteObserver(movie) {
+      if (movie.isFavorite) {
+        this.$store.commit("removeFromFavorites", movie);
+      } else {
+        this.$store.commit("addToFavorites", movie);
+      }
+    },
+    isMovieInFavorites(movieId) {
+      let isMovieInFavorites = this.favorites.some(
+        (favMovie) => favMovie.id === movieId
+      );
+      return isMovieInFavorites;
     },
   },
 };

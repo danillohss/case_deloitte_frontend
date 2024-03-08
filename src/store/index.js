@@ -8,14 +8,24 @@ export default createStore({
     movies: [],
     currentPage: 1,
     movieInfos: [],
+    favorites: JSON.parse(localStorage.getItem("favorites")) || [],
   },
   mutations: {
     getMovies(state, data) {
       state.movies = [...state.movies, ...data.results];
+      //console.log(state.movies.length);
     },
     getMoviesInfos(state, payload) {
       state.movieInfos = payload;
-    }
+    },
+     addToFavorites(state, payload) {
+      state.favorites.push(payload);
+      localStorage.setItem("favorites", JSON.stringify(state.favorites));
+    },
+    removeFromFavorites(state, payload) {
+      state.favorites = state.favorites.filter((favMovie) => favMovie.id !== payload.id);
+      localStorage.setItem("favorites", JSON.stringify(state.favorites));
+    },
   },
   actions: {
     async getMovies({ commit }, page) {
