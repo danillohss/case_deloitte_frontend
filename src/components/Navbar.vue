@@ -22,8 +22,8 @@
             <router-link
               type="button"
               class="btn btn-#606060 position-relative"
-              style="color: white"
               aria-current="page"
+              style="color: white; border: none"
               to="/"
             >
               Home
@@ -34,7 +34,7 @@
               to="/favorites"
               type="button"
               class="btn btn-#606060 position-relative"
-              style="color: white"
+              style="color: white; border: none"
             >
               Favorites
               <span

@@ -1,4 +1,15 @@
 <template>
+  <div>
+    <transition name="fade">
+      <div
+        v-if="movieInfos.isFavorite"
+        class="alert alert-success centered-div"
+        role="alert"
+      >
+        This movie is one of your favorites!
+      </div>
+    </transition>
+  </div>
   <div id="card" class="card mb-3" style="max-width: 540px; margin: auto">
     <div class="row g-0 d-flex justify-content-center align-items-center">
       <div class="col-md-8">
@@ -86,5 +97,13 @@ export default {
 }
 .card-text {
   color: white;
+}
+.centered-div {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+  width: 28%;
+  margin-bottom: 20px;
 }
 </style>
