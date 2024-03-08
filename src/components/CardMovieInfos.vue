@@ -31,6 +31,7 @@
               v-model="movieInfos.isFavorite"
               :checked="isMovieInFavorites(movieInfos.id)"
               @click="favoriteObserver(movieInfos)"
+              style="cursor: pointer"
             />
           </div>
         </div>

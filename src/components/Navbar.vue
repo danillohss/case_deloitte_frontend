@@ -18,18 +18,31 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <router-link class="nav-link active" aria-current="page" to="/">
+          <li class="nav-item" style="padding-right: 5px">
+            <router-link
+              type="button"
+              class="btn btn-#606060 position-relative"
+              style="color: white"
+              aria-current="page"
+              to="/"
+            >
               Home
             </router-link>
           </li>
           <li class="nav-item">
             <router-link
-              class="nav-link active"
-              aria-current="page"
               to="/favorites"
+              type="button"
+              class="btn btn-#606060 position-relative"
+              style="color: white"
             >
               Favorites
+              <span
+                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+              >
+                {{ this.favorites.length }}
+                <span class="visually-hidden">unread messages</span>
+              </span>
             </router-link>
           </li>
         </ul>
@@ -40,13 +53,18 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   name: "NAVBAR",
+
+  computed: {
+    ...mapState(["favorites"]),
+  },
 };
 </script>
 
 <style>
-li:hover {
+.nav-item:hover {
   background-color: #606060;
 }
 </style>
