@@ -80,7 +80,7 @@ export default {
         this.loadingMoreMovies = true; // Indica que estamos carregando mais filmes
 
         try {
-          // Load more movies when the user is near the bottom
+          // Carrega mais filmes quando o usuario chegar ao fim da página
           this.$store.state.currentPage++;
           await this.$store.dispatch(
             "getMovies",
