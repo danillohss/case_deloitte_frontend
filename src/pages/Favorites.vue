@@ -44,11 +44,6 @@ import { mapState } from "vuex";
 
 export default {
   name: "FAVORITES",
-  data() {
-    return {
-      limit: 300,
-    };
-  },
   computed: {
     ...mapState(["favorites", "movies"]),
   },
@@ -56,7 +51,8 @@ export default {
     getImageUrl(relativePath) {
       return `https://image.tmdb.org/t/p/w200${relativePath}`;
     },
-    caracterLimit(overview, limit) {
+    caracterLimit(overview) {
+      let limit = 300;
       if (!overview) return "";
       return overview.length > limit
         ? overview.slice(0, limit) + "..."

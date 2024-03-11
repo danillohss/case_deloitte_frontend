@@ -48,13 +48,9 @@ import { mapState } from "vuex";
 
 export default {
   name: "CARD_MOVIE",
-  data() {
-    return {
-      limit: 300,
-    };
-  },
   methods: {
-    caracterLimit(overview, limit) {
+    caracterLimit(overview) {
+      let limit = 300;
       if (!overview) return "";
       return overview.length > limit
         ? overview.slice(0, limit) + "..."
